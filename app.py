@@ -38,10 +38,7 @@ def get_profile():
 	cursor = db.cursor()
 	cursor.execute('SELECT * FROM person')
 	rows = cursor.fetchall()
-	# Peut etre pas obligatoire
-	for row in rows:
-		data.append(row)
-	print(data)
+	print(rows)
 	return render_template('profile.html')
 
 
