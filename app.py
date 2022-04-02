@@ -8,7 +8,7 @@ api = Flask(__name__)
 
 @api.route('/', methods=['GET'])
 def home():
-    return render_template('home.html')
+    return render_template('admin/index.html')
 
 @api.route('/events', methods=['GET'])
 def get_events():
