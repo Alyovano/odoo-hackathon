@@ -8,15 +8,18 @@
 {% endblock %}
 {% block content %}
 {{ super() }}
-    <h1 class="offset-2">Cursusflix</h1>
-    <div class="input-group">
-      <div class="form-outline">
-        <input type="search" id="form1" class="form-control" />
-        <label class="form-label" for="form1">Search</label>
+    <div class="row">
+      <div class="col-6">
+        <h1 class="offset-2">Cursusflix</h1>
       </div>
-      <button type="button" class="btn btn-primary">
-        <i class="fas fa-search"></i>
-      </button>
+      <div class="col-6 mt-2 mb-4 input-group">
+        <div class="form-outline">
+          <input type="search" id="form1" class="form-control" />
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
     </div>
     <div class="row">
     {%for item in content %}
