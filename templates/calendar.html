@@ -2,13 +2,29 @@
 {% block title %}Calendar{% endblock %}
 {% block head %}
   {{ super() }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
   <style type="text/css">
     .important { color: #336699; }
+    #calendar{
+      max-height: 80vh;
+      margin: 20px 0 50px 0;
+    }
   </style>
 {% endblock %}
 {% block content %}
-    <h1>Calendar</h1>
-    <p class="important">
-        Calendar
-    </p>
+<div id="calendar"></div>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      eventClick: function(data) {
+        console.log(data);
+      }
+    });
+    calendar.render();
+  });
+</script>
 {% endblock %}
