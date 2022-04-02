@@ -3,7 +3,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 api = Flask(__name__)
-api.config['SQLALCHEMY_DATABASE_URI'] = 'sqllite:///app.db'
+api.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 api.config['SECRET_KEY'] = 'RUSH B WINNER'
 db = SQLAlchemy(api)
 
@@ -35,7 +35,7 @@ def home():
 
 @api.route('/events', methods=['GET'])
 def get_events():
-    return person.query.all()
+    return {'events': person.query.all()}
 
 if __name__ == '__main__':
     db.create_all()
