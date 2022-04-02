@@ -6,7 +6,20 @@
         "chapitre": 4,
         "prof": "Monsieur Gilbert"
     },
-
+    {
+        "vid_link": "https://www.youtube.com/embed/watch?v=mwGcgOIAr2g",
+        "name": "Le Participe Passé",
+        "cours": "Français",
+        "chapitre": 6,
+        "prof": "Monsieur Letteuil"
+    },
+    {
+        "vid_link": "https://www.youtube.com/embed/watch?v=Tfj3quIORlk",
+        "name": "Comprendre le bonheur",
+        "cours": "Philosophie",
+        "chapitre": 3,
+        "prof": "Madame Patrick"
+    },
     {
         "vid_link": "https://www.youtube.com/embed/watch?v=kbTWwWQ9tYo",
         "name": "Inequations",
@@ -14,20 +27,18 @@
         "chapitre": 5,
         "prof": "Monsieur Gilbert"
     },
-
     {
-        "vid_link": "https://www.youtube.com/embed/watch?v=WoTpA2RyuVU",
-        "name": "Equiation second degre : Bases 2",
+        "vid_link": " https://www.youtube.com/embed/watch?v=utM8TKG90r8",
+        "name": "Les intégrales",
         "cours": "Math",
-        "chapitre": 4,
-        "prof": "Monsieur Gilbert"
+        "chapitre": 9,
+        "prof": "Madame Parmentier"
     },
-
     {
-        "vid_link": "https://www.youtube.com/embed/watch?v=kbTWwWQ9tYo",
-        "name": "Inequations : Avances 2",
-        "cours": "Math",
-        "chapitre": 5,
-        "prof": "Monsieur Gilbert"
+        "vid_link": "https://www.youtube.com/embed/watch?v=tDrv-BzhgFc",
+        "name": "Les continents et points cardinaux",
+        "cours": "Geographie",
+        "chapitre": 2,
+        "prof": "Madame Dupont"
     }
 ]
