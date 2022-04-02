@@ -35,13 +35,17 @@ def get_cursusflix():
     print(data)
     return render_template('cursusflix.html', content=data)
 
+@api.route('/cursusflix/<string:course_name>', methods=['GET'])
+def get_cursusflix_ressources(course_name):
+    print(course_name)
+    return ('<h1>hello</h1>')
+
 @api.route('/courses', methods=['GET'])
 def get_courses():
     return render_template('courses.html')
 
 @api.route('/profile', methods=['GET'])
 def get_profile():
-	data = []
 	cursor = db.cursor()
 	cursor.execute('SELECT * FROM person WHERE person_id=1;')
 	rows = cursor.fetchall()
