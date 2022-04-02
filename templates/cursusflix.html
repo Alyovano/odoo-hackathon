@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/profile.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>School 2.0</title>
-</head>
-<body>
-    <!-- Heading -> Nav bar ? -->
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-            <span class="mr-4"><h2>School 2.0</h2></span>
-            <span>
-                <button class="btn btn-outline-success" type="button">Calendar</button>
-                <button class="btn btn btn-outline-secondary" type="button">Branches</button>
-            </span>
-        </form>
-    </nav>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block title %}CoursFlix{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+    <h1>Index</h1>
+    <p class="important">
+        Home page
+    </p>
+{% endblock %}
