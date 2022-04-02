@@ -14,5 +14,15 @@ def home():
 def get_events():
     return {'event': 'hello'}
 
+
+@api.route('/profile', methods=['GET'])
+def get_profile():
+    return render_template('profile.html')
+
+
+@api.route('/calendar', methods=['GET'])
+def get_calendar():
+    return render_template('calendar.html')
+
 if __name__ == '__main__':
     api.run() 
