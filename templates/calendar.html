@@ -22,7 +22,10 @@
       initialView: 'dayGridMonth',
       eventClick: function(data) {
         console.log(data);
-      }
+      },
+	  eventSource: [
+	 	'/calendar/', 
+	  ]
     });
     calendar.render();
   });
