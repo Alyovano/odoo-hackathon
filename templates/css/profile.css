@@ -10,7 +10,9 @@ body{
     background-color: #f5f5f5;
 }
 img {
-    max-width: 100%;
+    max-width: 300px;
+    max-height: 200px;
+    
 }
 img {
     vertical-align: middle;
