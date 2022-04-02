@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from database import Database
-
+import json
 api = Flask(__name__)
 
 db = Database()
@@ -20,8 +20,10 @@ def get_events():
 
 @api.route('/cursusflix', methods=['GET'])
 def get_cursusflix():
-    # Chercher en db les events
-    return render_template('cursusflix.html')
+    with open('data/course_bank.json') as f:
+        data = json.load(f)
+    print(data)
+    return render_template('cursusflix.html', content=data)
 
 
 @api.route('/courses', methods=['GET'])
