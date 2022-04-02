@@ -7,5 +7,25 @@
   </style>
 {% endblock %}
 {% block content %}
-    <h1>Cursusflix</h1>
+{{ super() }}
+    <h1 class="offset-2">Cursusflix</h1>
+    <div class="input-group">
+      <div class="form-outline">
+        <input type="search" id="form1" class="form-control" />
+        <label class="form-label" for="form1">Search</label>
+      </div>
+      <button type="button" class="btn btn-primary">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <div class="row">
+    {%for item in content %}
+    <div class="col-6">
+      <iframe width="420" height="315"
+      src="{{item.vid_link}}">
+      </iframe>
+      <h4 >{{ item.name }}</h4>
+    </div>
+    {%endfor%}
+  </div>
 {% endblock %}

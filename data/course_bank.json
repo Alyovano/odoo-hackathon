@@ -1,6 +1,6 @@
 [
     {
-        "vid_link": "https://www.youtube.com/watch?v=WoTpA2RyuVU",
+        "vid_link": "https://www.youtube.com/embed/watch?v=WoTpA2RyuVU",
         "name": "Equiation second degre : Bases",
         "cours": "Math",
         "chapitre": 4,
@@ -8,7 +8,7 @@
     },
 
     {
-        "vid_link": "https://www.youtube.com/watch?v=kbTWwWQ9tYo",
+        "vid_link": "https://www.youtube.com/embed/watch?v=kbTWwWQ9tYo",
         "name": "Inequations",
         "cours": "Math",
         "chapitre": 5,
@@ -16,7 +16,7 @@
     },
 
     {
-        "vid_link": "https://www.youtube.com/watch?v=WoTpA2RyuVU",
+        "vid_link": "https://www.youtube.com/embed/watch?v=WoTpA2RyuVU",
         "name": "Equiation second degre : Bases 2",
         "cours": "Math",
         "chapitre": 4,
@@ -24,7 +24,7 @@
     },
 
     {
-        "vid_link": "https://www.youtube.com/watch?v=kbTWwWQ9tYo",
+        "vid_link": "https://www.youtube.com/embed/watch?v=kbTWwWQ9tYo",
         "name": "Inequations : Avances 2",
         "cours": "Math",
         "chapitre": 5,
