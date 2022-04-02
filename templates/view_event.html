@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}
+{{event.title}}
+{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+    #calendar{
+      max-height: 80vh;
+      margin: 20px 0 50px 0;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      {{event.title}}
+    </div>
+    <div class="col-md-3">Debut: {{event.start}}</div>
+    <div class="col-md-3">Fin: {{event.end}}</div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <img src="./img/category/{{
+
+      }}" height="500px" width="500px" alt="{{event.title}}">
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          {{event.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

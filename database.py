@@ -59,6 +59,7 @@ class Database():
                         date_from INTEGER, 
                         date_to INTEGER, 
                         organizer INTEGER, 
+                        event_description TEXT,
                         PRIMARY KEY (event_id)
                     )"""
         cursor.execute(events)

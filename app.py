@@ -24,9 +24,24 @@ def get_events():
     cursor.execute('SELECT * FROM events')
     rows = cursor.fetchall()
     events = []
-    [events.append({'title': rows[i][1], 'start': rows[i][2], 'end': rows[i][3]}) for i in range(len(rows))]
+    [events.append({'event_id': rows[i][0], 'title': rows[i][1], 'start': rows[i][2], 'end': rows[i][3], 'description': rows[i][5]}) for i in range(len(rows))]
     print(events)
     return render_template('calendar.html', events=events)
+
+@api.route('/calendar/event/<int:id>')
+def get_event(id):
+  cursor = db.cursor()
+  cursor.execute('SELECT * FROM events WHERE event_id = {}'.format(id))
+  rows = cursor.fetchall()
+  [print(rows[i][1]) for i in range(len(rows))]
+  return render_template('view_event.html', event = {
+    'event_id': rows[0][0],
+    'title': rows[0][1],
+    'start': rows[0][2],
+    'end': rows[0][3],
+    'organizer': rows[0][4],
+    'description': rows[0][5]
+  })
 
 @api.route('/cursusflix', methods=['GET'])
 def get_cursusflix():
