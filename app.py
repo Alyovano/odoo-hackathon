@@ -1,22 +1,28 @@
 from enum import auto
 from flask import Flask, render_template
-import sqlalchemy as db
+from flask_sqlalchemy import SQLAlchemy
+
+api = Flask(__name__)
+api.config['SQLALCHEMY_DATABASE_URI'] = 'sqllite:///app.db'
+api.config['SECRET_KEY'] = 'RUSH B WINNER'
+db = SQLAlchemy(api)
+
+
 
 """
 #### STRUCTURE DATABASES
 """
-engine = db.create_engine('sqlite:///app.db')
-connection = engine.connect()
-metadata = db.MetaData()
 
-person = db.Table('person', metadata, autoload=True, autoload_with=engine)
+class person(db.Model):
+	id 			= db.Column('person_id', db.Integer, primary_key = True)
+	lastname 	= db.Column(db.String(100))
+	firstname	= db.Column(db.String(100))
+	person_type = db.Column(db.String(100))
 
 
 """
 #### END
 """
-
-api = Flask(__name__)
 
 """###
 ###### Home + API
@@ -28,7 +34,8 @@ def home():
 
 @api.route('/events', methods=['GET'])
 def get_events():
-    return {'event': 'hello'}
+    return person.query.all()
 
 if __name__ == '__main__':
-    api.run() 
+    db.create_all()
+    api.run(debug=True)
