@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "view_group": "admin",
+  "ownerId": 1,
+  "allDay": 0,
+  "start": "2022-04-02 10:00:00",
+  "startStr": "",
+  "end": "2022-04-02 20:00:00",
+  "endStr": "",
+  "title": "Fbqzfbqlzkbc",
+  "url": "http://localhost:8080/calendar/event/view?id=1",
+  "editable": null,
+  "startEditable": null,
+  "durationEditable": null,
+  "resourceEditable": null,
+  "display": "auto",
+  "overlap": null,
+  "constraint": "",
+  "backgroundColor": "#000000",
+  "borderColor": "#000000",
+  "textColor": "#000000",
+  "source": "http://localhost:8080/calendar/event/getevent?id=1"
+}
