@@ -1,4 +1,20 @@
+from enum import auto
 from flask import Flask, render_template
+import sqlalchemy as db
+
+"""
+#### STRUCTURE DATABASES
+"""
+engine = db.create_engine('sqlite:///app.db')
+connection = engine.connect()
+metadata = db.MetaData()
+
+person = db.Table('person', metadata, autoload=True, autoload_with=engine)
+
+
+"""
+#### END
+"""
 
 api = Flask(__name__)
 
