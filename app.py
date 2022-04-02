@@ -3,6 +3,8 @@ from database import Database
 import json
 api = Flask(__name__)
 
+NULL = 0
+
 db = Database()
 
 @api.route('/', methods=['GET'])
@@ -36,6 +38,34 @@ def get_profile():
     # Chercher en db les events
     return render_template('profile.html')
 
+# =================================================================
+# ------------------- --- ENDPOINTS EVENT --- ---------------------
+# =================================================================
+@api.route('/calendar/events/list/all')
+def get_all_events():
+    return {
+		"id": 1,
+		"view_group": "admin",
+		"ownerId": 1,
+		"allDay": 0,
+		"start": "2022-04-02 10:00:00",
+		"startStr": "",
+		"end": "2022-04-02 20:00:00",
+		"endStr": "",
+		"title": "Fbqzfbqlzkbc",
+		"url": "http://localhost:8080/calendar/event/view?id=1",
+		"editable": NULL,
+		"startEditable": NULL,
+		"durationEditable": NULL,
+		"resourceEditable": NULL,
+		"display": "auto",
+		"overlap": NULL,
+		"constraint": "",
+		"backgroundColor": "#000000",
+		"borderColor": "#000000",
+		"textColor": "#000000",
+		"source": "http://localhost:8080/calendar/event/getevent?id=1"
+	}
 
 if __name__ == '__main__':
     api.run() 
