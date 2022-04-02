@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify
 from database import Database
 import json
 import datetime
+
 api = Flask(__name__)
 
 NULL = 0
@@ -9,104 +10,113 @@ NULL = 0
 database = Database()
 db = database.db
 
-@api.route('/', methods=['GET'])
+
+@api.route("/", methods=["GET"])
 def home():
-    return render_template('home.html')
+    return render_template("home.html")
 
-@api.route('/admin', methods=['GET'])
+
+@api.route("/admin", methods=["GET"])
 def admin():
-    return render_template('admin/index.html')
+    return render_template("admin/index.html")
 
-@api.route('/calendar', methods=['GET'])
+
+@api.route("/calendar", methods=["GET"])
 def get_events():
     # Chercher en db les events
     cursor = db.cursor()
-    cursor.execute('SELECT * FROM events')
+    cursor.execute("SELECT * FROM events")
     rows = cursor.fetchall()
     events = []
-    [events.append({'event_id': rows[i][0], 'title': rows[i][1], 'start': rows[i][2], 'end': rows[i][3], 'description': rows[i][5]}) for i in range(len(rows))]
+    [
+        events.append(
+            {
+                "event_id": rows[i][0],
+                "title": rows[i][1],
+                "start": rows[i][2],
+                "end": rows[i][3],
+                "description": rows[i][5],
+            }
+        )
+        for i in range(len(rows))
+    ]
     print(events)
-    return render_template('calendar.html', events=events)
+    return render_template("calendar.html", events=events)
 
-@api.route('/calendar/event/<int:id>')
+
+@api.route("/calendar/event/<int:id>")
 def get_event(id):
-  cursor = db.cursor()
-  cursor.execute('SELECT * FROM events WHERE event_id = {}'.format(id))
-  rows = cursor.fetchall()
-  [print(rows[i][1]) for i in range(len(rows))]
-  return render_template('view_event.html', event = {
-    'event_id': rows[0][0],
-    'title': rows[0][1],
-    'start': rows[0][2],
-    'end': rows[0][3],
-    'organizer': rows[0][4],
-    'description': rows[0][5],
-    'category_id': rows[0][6],
-  })
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM events WHERE event_id = {}".format(id))
+    rows = cursor.fetchall()
+    event = rows
+    cursor.execute("SELECT * FROM event_attendes WHERE event_id = {}".format(id))
+    rows = cursor.fetchall()
+    person_attendes = rows
+    persons = []
+    for i in range(len(person_attendes)):
+        cursor.execute(
+            "SELECT * FROM person WHERE person_id = {}".format(person_attendes[i][2])
+        )
+        rows = cursor.fetchall()
+        persons.append(
+            {
+                "id": rows[0][0],
+                "lastname": rows[0][1],
+                "firstname": rows[0][2],
+                "person_type": rows[0][3],
+                "email": rows[0][4],
+            }
+        )
+    return render_template(
+        "view_event.html",
+        event={
+            "event_id": event[0][0],
+            "title": event[0][1],
+            "start": event[0][2],
+            "end": event[0][3],
+            "organizer": event[0][4],
+            "description": event[0][5],
+            "category_id": event[0][6],
+        },
+        persons=persons,
+    )
 
-@api.route('/cursusflix', methods=['GET'])
+
+@api.route("/cursusflix", methods=["GET"])
 def get_cursusflix():
-    with open('data/course_bank.json') as f:
+    with open("data/course_bank.json") as f:
         data = json.load(f)
     print(data)
-    return render_template('cursusflix.html', content=data)
+    return render_template("cursusflix.html", content=data)
 
-@api.route('/cursusflix/<string:course_name>', methods=['GET'])
+
+@api.route("/cursusflix/<string:course_name>", methods=["GET"])
 def get_cursusflix_ressources(course_name):
     print(course_name)
-    return ('<h1>hello</h1>')
+    return "<h1>hello</h1>"
 
-@api.route('/courses', methods=['GET'])
+
+@api.route("/courses", methods=["GET"])
 def get_courses():
-    return render_template('courses.html')
+    return render_template("courses.html")
 
-@api.route('/profile', methods=['GET'])
+
+@api.route("/profile", methods=["GET"])
 def get_profile():
-	cursor = db.cursor()
-	cursor.execute('SELECT * FROM person WHERE person_id=1;')
-	rows = cursor.fetchall()
-	profil_exemple = {
-		'id': rows[0][0],
-		'lastname': rows[0][1],
-		'firstname': rows[0][2],
-		'person_type': rows[0][3],
-		'email': rows[0][4],
-	}
-	print(profil_exemple)
-	return render_template('profile.html', content=profil_exemple)
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM person WHERE person_id=1;")
+    rows = cursor.fetchall()
+    profil_exemple = {
+        "id": rows[0][0],
+        "lastname": rows[0][1],
+        "firstname": rows[0][2],
+        "person_type": rows[0][3],
+        "email": rows[0][4],
+    }
+    print(profil_exemple)
+    return render_template("profile.html", content=profil_exemple)
 
 
-# =================================================================
-# ------------------- --- ENDPOINTS EVENT --- ---------------------
-# =================================================================
-@api.route('/calendar/events/list/all')
-def get_all_events():
-	return {'events': [{
-		'title': 'Hello',
-		'start': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-		'end': (datetime.datetime.now() + datetime.timedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')
-	}]}
-    #return jsonify({
-	#	"id": 1,
-	#	"view_group": "admin",
-	#	"ownerId": 1,
-	#	"allDay": 0,
-	#	"start": "2022-04-02 10:00:00",
-	#	"end": "2022-04-02 20:00:00",
-	#	"title": "Fbqzfbqlzkbc",
-	#	"url": "http://localhost:8080/calendar/event/view?id=1",
-	#	"editable": NULL,
-	#	"startEditable": NULL,
-	#	"durationEditable": NULL,
-	#	"resourceEditable": NULL,
-	#	"display": "auto",
-	#	"overlap": NULL,
-	#	"constraint": "",
-	#	"backgroundColor": "#000000",
-	#	"borderColor": "#000000",
-	#	"textColor": "#000000",
-	#	"source": "http://localhost:8080/calendar/event/getevent?id=1"
-	#})
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     api.run()

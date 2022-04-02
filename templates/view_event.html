@@ -30,6 +30,20 @@ block head %} {{ super() }}
     padding: 10px 25px;
     border-radius: 5px;
   }
+
+  .table {
+    margin-bottom: 150px;
+  }
+
+  .table-row-teacher td {
+    background-color: #6c5ce7;
+    color: white;
+  }
+
+  .table-row-teacher td a{
+    color: white;
+    decoration: none;
+  }
 </style>
 {% endblock %} {% block content %}
 <section>
@@ -71,12 +85,30 @@ block head %} {{ super() }}
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <table>
-          <thead>
+        <h1>List person in the event</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table">
+          <thead class="thead-dark">
             <th>Type</th>
             <th>Nom Complet</th>
             <th>Adresse email</th>
           </thead>
+          <tbody>
+            {% for person in persons %} 
+            {% if person.person_type == "teacher" %}
+              <tr class="table-row-teacher">
+            {%else %}
+            <tr>
+              {%endif %}
+              <td>{{person.person_type}}</td>
+              <td>{{person.firstname}} {{person.lastname}}</td>
+              <td><a href="mailto:{{person.email}}">{{person.email}}</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
         </table>
       </div>
     </div>
