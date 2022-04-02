@@ -2,7 +2,8 @@ import sqlite3
 
 class Database():
     def __init__(self):
-        self.db = sqlite3.connect('app.db')
+        self.db = sqlite3.connect('app.db', isolation_level=None, check_same_thread=False)
+        self.db.row_factory = sqlite3.Row
         self.init_database()
 
     def init_database(self):

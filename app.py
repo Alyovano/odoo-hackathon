@@ -5,7 +5,8 @@ api = Flask(__name__)
 
 NULL = 0
 
-db = Database()
+database = Database()
+db = database.db
 
 @api.route('/', methods=['GET'])
 def home():
@@ -33,14 +34,14 @@ def get_courses():
 
 @api.route('/profile', methods=['GET'])
 def get_profile():
-	# data = []
-	# cursor = db.cursor()
-	# cursor.execute('SELECT * FROM person')
-	# rows = cursor.fetchall()
+	data = []
+	cursor = db.cursor()
+	cursor.execute('SELECT * FROM person')
+	rows = cursor.fetchall()
 	# Peut etre pas obligatoire
-	# for row in rows:
-	# 	data.append(row)
-	# print(data)
+	for row in rows:
+		data.append(row)
+	print(data)
 	return render_template('profile.html')
 
 
