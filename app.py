@@ -27,16 +27,22 @@ def get_cursusflix():
     print(data)
     return render_template('cursusflix.html', content=data)
 
-
 @api.route('/courses', methods=['GET'])
 def get_courses():
-    # Chercher en db les events
     return render_template('courses.html')
 
 @api.route('/profile', methods=['GET'])
 def get_profile():
-    # Chercher en db les events
-    return render_template('profile.html')
+	# data = []
+	# cursor = db.cursor()
+	# cursor.execute('SELECT * FROM person')
+	# rows = cursor.fetchall()
+	# Peut etre pas obligatoire
+	# for row in rows:
+	# 	data.append(row)
+	# print(data)
+	return render_template('profile.html')
+
 
 # =================================================================
 # ------------------- --- ENDPOINTS EVENT --- ---------------------
