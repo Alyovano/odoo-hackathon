@@ -30,7 +30,7 @@ def get_courses():
     return render_template('courses.html')
 
 @api.route('/profile', methods=['GET'])
-def get_courses():
+def get_profile():
     # Chercher en db les events
     return render_template('profile.html')
 
