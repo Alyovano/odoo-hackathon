@@ -40,7 +40,8 @@ def get_event(id):
     'start': rows[0][2],
     'end': rows[0][3],
     'organizer': rows[0][4],
-    'description': rows[0][5]
+    'description': rows[0][5],
+    'category_id': rows[0][6],
   })
 
 @api.route('/cursusflix', methods=['GET'])

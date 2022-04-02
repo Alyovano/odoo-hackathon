@@ -1,42 +1,85 @@
-{% extends "layout.html" %}
-{% block title %}
-{{event.title}}
-{% endblock %}
-{% block head %}
-  {{ super() }}
-  <style type="text/css">
-    .important { color: #336699; }
-    #calendar{
-      max-height: 80vh;
-      margin: 20px 0 50px 0;
-    }
-  </style>
-{% endblock %}
-{% block content %}
+{% extends "layout.html" %} {% block title %} {{event.title}} {% endblock %} {%
+block head %} {{ super() }}
+<style type="text/css">
+  .important {
+    color: #336699;
+  }
+  #calendar {
+    max-height: 80vh;
+    margin: 20px 0 50px 0;
+  }
+</style>
+<style>
+  .row-event {
+    margin: 50px auto;
+  }
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      {{event.title}}
-    </div>
-    <div class="col-md-3">Debut: {{event.start}}</div>
-    <div class="col-md-3">Fin: {{event.end}}</div>
-  </div>
+  .event-title {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    decoration: underline;
+  }
 
-  <div class="row">
-    <div class="col-md-6">
-      <img src="./img/category/{{
+  .event-title:hover h1 {
+    color: #3498db;
+    cursor: pointer;
+  }
 
-      }}" height="500px" width="500px" alt="{{event.title}}">
-    </div>
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-12">
-          {{event.description}}
+  .btn-event {
+    min-width: 60px;
+    padding: 10px 25px;
+    border-radius: 5px;
+  }
+</style>
+{% endblock %} {% block content %}
+<section>
+  <div class="container">
+    <div class="row row-event event-header">
+      <div class="col-md-6 event-title">
+        <h1>{{event.title}}</h1>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12 event-date">Debut: {{event.start}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 event-date">Fin: {{event.end}}</div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
+    <div class="row row-event">
+      <div class="col-md-3 event-icon">
+        <i class="fa-solid fa-{{event.title[0]|lower}} fa-10x"></i>
+      </div>
+      <div class="col-md-6 event-description">
+        <div class="row">
+          <div class="col-md-12">{{event.description}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-event">
+      <div class="col-md-6">
+        <a href="#" class="btn-event btn-success">Rejoindre</a>
+        <a href="#" class="btn-event btn-danger">Quitter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <table>
+          <thead>
+            <th>Type</th>
+            <th>Nom Complet</th>
+            <th>Adresse email</th>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
