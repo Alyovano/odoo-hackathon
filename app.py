@@ -28,5 +28,12 @@ def get_cursusflix():
 def get_courses():
     # Chercher en db les events
     return render_template('courses.html')
+
+@api.route('/profile', methods=['GET'])
+def get_courses():
+    # Chercher en db les events
+    return render_template('profile.html')
+
+
 if __name__ == '__main__':
     api.run() 
