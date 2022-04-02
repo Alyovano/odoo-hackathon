@@ -41,10 +41,17 @@ def get_courses():
 def get_profile():
 	data = []
 	cursor = db.cursor()
-	cursor.execute('SELECT * FROM person')
+	cursor.execute('SELECT * FROM person WHERE person_id=1;')
 	rows = cursor.fetchall()
-	print(rows)
-	return render_template('profile.html')
+	profil_exemple = {
+		'id': rows[0][0],
+		'lastname': rows[0][1],
+		'firstname': rows[0][2],
+		'person_type': rows[0][3],
+		'email': rows[0][4],
+	}
+	print(profil_exemple)
+	return render_template('profile.html', content=profil_exemple)
 
 
 # =================================================================

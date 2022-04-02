@@ -8,11 +8,22 @@
 {% endblock %}
 {% block content %}
     <!-- About me : Student-Profile -->
+    <!-- 'id': rows[0][0], -->
+    <!-- 'lastname': rows[0][1], -->
+    <!-- 'firstname': rows[0][2], -->
+    <!-- 'person_type': rows[0][3], -->
+    <!-- 'email': rows[0][4], -->
     <section class="section about-section gray-bg" id="about">
         <div class="container">
             <div class="row align-items-center flex-row-reverse">
                 <div class="col-lg-6">
                     <div class="about-text go-to">
+                        {% if content.person_type == 'P' %}
+                        <h2>Teacher</h2>
+                        {% else %}
+                        <h2>Student</h2>
+                        {% endif %}
+                        <h2>{{ content.lastname }}&nbsp;{{ content.firstname }}</h2>
                         <h3 class="dark-color">About Me</h3>
                         <h6 class="theme-color lead">.Description breve de la personne.</h6>
                         <p>Paragra plus de details : Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -24,40 +35,42 @@
                         <div class="row about-list">
                             <div class="col-md-6">
                                 <div class="media">
-                                    <label>Birthday</label>
-                                    <p>4th april 1998</p>
+                                    <span>
+                                        <strong><label>Birthday</label></strong>
+                                        <p>4th april 1998</p>
+                                    </span>
                                 </div>
                                 <div class="media">
-                                    <label>Age</label>
-                                    <p>24 Yr</p>
+                                    <span>
+                                        <strong><label>Age</label></strong>
+                                        <p>24 Yr</p>
+                                    </span>
                                 </div>
                                 <div class="media">
-                                    <label>Residence</label>
-                                    <p>Belgium</p>
-                                </div>
-                                <div class="media">
-                                    <label>Address</label>
-                                    <p>Bruxelles, Ixelles</p>
+                                    <span>
+                                        <strong><label>Residence</label></strong>
+                                        <p>Belgium</p>
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="media">
-                                    <label>E-mail</label>
-                                    <p>info@domain.com</p>
+                                    <span>
+                                        <strong><label>Address</label></strong>
+                                        <p>Bruxelles, Ixelles</p>
+                                    </span>
                                 </div>
                                 <div class="media">
-                                    <label>Phone</label>
-                                    <p>0424/42.42.42</p>
-                                </div>
-
-                                <!-- Pas tres pertinent, go remove ? -->
-                                <div class="media">
-                                    <label>Insta</label>
-                                    <p>xxxxxx.insta</p>
+                                    <span>
+                                        <strong><label>E-mail</label></strong>
+                                        <p>{{ content.email }}</p>
+                                    </span>
                                 </div>
                                 <div class="media">
-                                    <label>Facebook</label>
-                                    <p>xxxxxxxx.fb</p>
+                                    <span>
+                                        <strong><label>Phone</label></strong>
+                                        <p>0424/42.42.42</p>
+                                    </span>
                                 </div>
                             </div>
                         </div>
