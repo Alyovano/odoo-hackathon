@@ -1,6 +1,4 @@
-import app
-
-db = app.db
+from . import db
 
 class Person(db.Model):
 	id 			= db.Column('person_id', db.Integer, primary_key = True)

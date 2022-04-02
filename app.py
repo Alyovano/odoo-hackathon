@@ -59,15 +59,5 @@ db = SQLAlchemy(api)
 ###### Home + API
 ###"""
 
-
-@api.route('/', methods=['GET'])
-def home():
-    return render_template('index.html')
-
-@api.route('/events', methods=['GET'])
-def get_events():
-    return {'persons': Person.query.all()}
-
 if __name__ == '__main__':
-    Database.db.create_all()
     api.run(debug=True)
