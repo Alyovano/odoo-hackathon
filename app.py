@@ -20,11 +20,13 @@ def admin():
 @api.route('/calendar', methods=['GET'])
 def get_events():
     # Chercher en db les events
-    return render_template('calendar.html', events=[{
-		'title': 'Hello',
-		'start': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-		'end': (datetime.datetime.now() + datetime.timedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')
-	}])
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM events')
+    rows = cursor.fetchall()
+    events = []
+    [events.append({'title': rows[i][1], 'start': rows[i][2], 'end': rows[i][3]}) for i in range(len(rows))]
+    print(events)
+    return render_template('calendar.html', events=events)
 
 @api.route('/cursusflix', methods=['GET'])
 def get_cursusflix():
