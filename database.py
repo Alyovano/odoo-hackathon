@@ -30,11 +30,11 @@ class Database():
 
 
 
-        courses =   """CREATE TABLE cours (
-                        cours_id INTEGER NOT NULL, 
-                        category_id INTEGER, 
-                        name VARCHAR(100), 
-                        level INTEGER, 
+        courses =   """CREATE TABLE courses (
+                        cours_id INTEGER NOT NULL,
+                        category_id INTEGER,
+                        name VARCHAR(100),
+                        level INTEGER,
                         required INTEGER, 
                         PRIMARY KEY (cours_id)
                     )"""
@@ -42,17 +42,17 @@ class Database():
         
         
         
-        courses_person = """CREATE TABLE courses_person (
+        cours_person = """CREATE TABLE cours_person (
                             cours_person_id INTEGER NOT NULL, 
                             person INTEGER, 
                             cours INTEGER, 
                             PRIMARY KEY (cours_person_id)
                         )"""
-        cursor.execute(courses_person)
+        cursor.execute(cours_person)
 
 
 
-        events =    """CREATE TABLE event (
+        events =    """CREATE TABLE events (
                         event_id INTEGER NOT NULL, 
                         title VARCHAR(100), 
                         date_from INTEGER, 
@@ -71,7 +71,4 @@ class Database():
                                 PRIMARY KEY (event_attendes_id)
                             )"""
         cursor.execute(events_attended)
-
-
-
         self.db.commit()
