@@ -13,29 +13,31 @@
 <body>
     <!-- Heading -> Nav bar ? -->
     {% block navbar %}
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-            <span class="mr-4"><h2>School 2.0</h2></span>
-            <span>
-                <a href="https://www.w3schools.com/">
-                    <button class="btn btn btn-outline-secondary" type="button">
-                        Calendar
-                    </button>
-                </a>
-                <a href="https://www.w3schools.com/">
-                    <button class="btn btn btn-outline-secondary" type="button">
-                        Branches
-                    </button>
-                </a>
-                <a href="https://www.w3schools.com/">
-                    <button class="btn btn btn-outline-secondary" type="button">
-                        CoursFlix
-                    </button>
-                </a>
-            </span>
-        </form>
-    </nav>
     {% endblock %}
+{% block content %}
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <span class="mr-4"><h2>School 2.0</h2></span>
+        <span>
+            <a href="https://www.w3schools.com/">
+                <button class="btn btn btn-outline-secondary" type="button">
+                    Calendar
+                </button>
+            </a>
+            <a href="https://www.w3schools.com/">
+                <button class="btn btn btn-outline-secondary" type="button">
+                    Branches
+                </button>
+            </a>
+            <a href="https://www.w3schools.com/">
+                <button class="btn btn btn-outline-secondary" type="button">
+                    CoursFlix
+                </button>
+            </a>
+        </span>
+    </form>
+</nav>
+{% endblock %}
 
     <div id="footer">
         {% block footer %}
