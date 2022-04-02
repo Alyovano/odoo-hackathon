@@ -6,7 +6,7 @@ class Database():
         self.init_database()
 
     def init_database(self):
-        person = """CREATE TABLE person (
+        person = """CREATE TABLE IF NOT EXISTS person (
             person_id INTEGER NOT NULL, 
             lastname VARCHAR(100), 
             firstname VARCHAR(100), 
@@ -21,7 +21,7 @@ class Database():
 
 
 
-        category = """CREATE TABLE category (
+        category = """CREATE TABLE IF NOT EXISTS category (
                         category_id INTEGER NOT NULL, 
                         name VARCHAR(100), 
                         PRIMARY KEY (category_id)
@@ -30,7 +30,7 @@ class Database():
 
 
 
-        courses =   """CREATE TABLE courses (
+        courses =   """CREATE TABLE IF NOT EXISTS courses (
                         cours_id INTEGER NOT NULL,
                         category_id INTEGER,
                         name VARCHAR(100),
@@ -42,7 +42,7 @@ class Database():
         
         
         
-        cours_person = """CREATE TABLE cours_person (
+        cours_person = """CREATE TABLE IF NOT EXISTS cours_person (
                             cours_person_id INTEGER NOT NULL, 
                             person INTEGER, 
                             cours INTEGER, 
@@ -52,7 +52,7 @@ class Database():
 
 
 
-        events =    """CREATE TABLE events (
+        events =    """CREATE TABLE IF NOT EXISTS events (
                         event_id INTEGER NOT NULL, 
                         title VARCHAR(100), 
                         date_from INTEGER, 
@@ -64,7 +64,7 @@ class Database():
 
 
 
-        events_attended =   """CREATE TABLE event_attendes (
+        events_attended =   """CREATE TABLE IF NOT EXISTS event_attendes (
                                 event_attendes_id INTEGER NOT NULL, 
                                 event_id INTEGER, 
                                 person_id INTEGER, 
