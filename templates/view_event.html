@@ -67,7 +67,8 @@ block head %} {{ super() }}
 
     <div class="row">
       <div class="container">
-        <form class="form hidden" action="/calender/event/update" method="post">
+        <form class="form hidden" action="/calendar/event/update/form" method="post">
+          <input type="hidden" name="id" value="{{event.event_id}}">
           <div class="row">
             <div class="col-md-3">
               <fieldset>
@@ -186,5 +187,9 @@ block head %} {{ super() }}
   document.getElementById("updater").addEventListener("click", function () {
     $("form").toggleClass("hidden");
   });
+
+  document.getElementById("submitter").addEventListener("click", function () {
+    $("form").submit();
+  })
 </script>
 {% endblock %}

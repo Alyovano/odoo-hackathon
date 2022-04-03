@@ -1,18 +1,20 @@
-{% extends "layout.html" %}
-{% block title %}Calendar{% endblock %}
-{% block head %}
-  {{ super() }}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
-  <style type="text/css">
-    .important { color: #336699; }
-    #calendar{
-      max-height: 80vh;
-      margin: 20px 0 50px 0;
-    }
-  </style>
-{% endblock %}
-{% block content %}
+{% extends "layout.html" %} {% block title %}Calendar{% endblock %} {% block
+head %} {{ super() }}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+<style type="text/css">
+  .important {
+    color: #336699;
+  }
+  #calendar {
+    max-height: 80vh;
+    margin: 20px 0 50px 0;
+  }
+</style>
+{% endblock %} {% block content %}
 <div id="calendar"></div>
 
 <script type="text/javascript">
@@ -23,7 +25,44 @@
       selectable: true,
       selectMirror: true,
       editable: true,
-      eventDrop: function(data) {console.log(data)},
+      eventDrop: function(data) {
+        let start = data.event.start;
+        let end = data.event.end;
+        let c_start = {
+          year: start.getFullYear(),
+          month: ((start.getMonth() + 1) < 10 ? `0${start.getMonth() + 1}`: start.getMonth() + 1),
+          day: (start.getDate() < 10 ? `0${start.getDate()}`: start.getDate()),
+          hour: (start.getHours() < 10 ? `0${start.getHours()}`:start.getHours()),
+          minute: (start.getMinutes() < 10 ? `0${start.getMinutes()}`:start.getMinutes()),
+          sec: '00'
+        }
+
+        let c_end = {
+          year: end.getFullYear(),
+          month: ((end.getMonth() + 1) < 10 ? `0${end.getMonth() + 1}`: end.getMonth() + 1),
+          day: (end.getDate() < 10 ? `0${end.getDate()}`: end.getDate()),
+          hour: (end.getHours() < 10 ? `0${end.getHours()}`:end.getHours()),
+          minute: (end.getMinutes() < 10 ? `0${end.getMinutes()}`:end.getMinutes()),
+          sec: '00'
+        }
+
+        start = `${c_start.year}-${c_start.month}-${c_start.day} ${c_start.hour}:${c_start.minute}:${c_start.sec}`;
+        end = `${c_end.year}-${c_end.month}-${c_end.day} ${c_end.hour}:${c_end.minute}:${c_end.sec}`;
+
+        /**
+         * SEND TO UPDATER
+         */
+        id = data.event.url.split('/').reverse()[0]
+        console.log(id)
+        $.ajax('/calendar/event/update/drop', {
+          method: 'POST',
+          data: {
+            start: start,
+            end: end,
+            event_id: id
+          }
+        })
+      },
       select: function(data) {
         // create
         let start = new Date(data.start);
@@ -48,8 +87,6 @@
 
         start = `${c_start.year}-${c_start.month}-${c_start.day} ${c_start.hour}:${c_start.minute}:${c_start.sec}`;
         end = `${c_end.year}-${c_end.month}-${c_end.day} ${c_end.hour}:${c_end.minute}:${c_end.sec}`;
-        console.log(start);
-        console.log(end);
         $.ajax(`/calendar/event/create`, {
           method: 'POST',
           data: {

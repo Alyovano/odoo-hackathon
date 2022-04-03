@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, redirect, render_template, jsonify, request
 from database import Database
 import json
 import datetime
@@ -82,18 +82,56 @@ def get_event(id):
         persons=persons,
     )
 
-@api.route("/calendar/event/create", methods=['POST'])
+
+@api.route("/calendar/event/create", methods=["POST"])
 def create_event():
-  data = request.form
-  start = data.get('start')
-  end = data.get('end')
-  cursor = db.cursor()
-  cursor.execute("""INSERT INTO events
+    data = request.form
+    start = data.get("start")
+    end = data.get("end")
+    cursor = db.cursor()
+    cursor.execute(
+        """INSERT INTO events
                     ("title", "date_from", "date_to", "organizer", "event_description", "category_id")
                     VALUES ('TITLE', '{}', '{}', 1, 'Description', 1);
-                """.format(start, end))
-  db.commit();
-  return True;
+                """.format(
+            start, end
+        )
+    )
+    db.commit()
+    return True
+
+
+@api.route("/calendar/event/update/form", methods=["POST"])
+def update_event_form():
+    data = request.form
+    cursor = db.cursor()
+    cursor.execute(
+        """UPDATE events SET date_from = \'{}\', date_to = \'{}\', title = \'{}\', title = \'{}\', event_description = \'{}\' WHERE event_id = {}""".format(
+            data.get("date_from"),
+            data.get("date_to"),
+            data.get("title"),
+            data.get("description"),
+            data.get("id"),
+        )
+    )
+    db.commit()
+    return redirect("/calendar/event/{}".format(data.get("id")))
+
+
+@api.route("/calendar/event/update/drop", methods=["POST"])
+def update_event_drop():
+    data = request.form
+    start = data.get("start")
+    end = data.get("end")
+    cursor = db.cursor()
+    cursor.execute(
+        """UPDATE events SET date_from = \'{}\', date_to = \'{}\' WHERE event_id = {}""".format(
+            start, end, data.get("event_id")
+        )
+    )
+    db.commit()
+    return redirect("/calendar/event/{}".format(data.get("event_id")))
+
 
 @api.route("/cursusflix", methods=["GET"])
 def get_cursusflix():
