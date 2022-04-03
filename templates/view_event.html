@@ -115,7 +115,8 @@ block head %} {{ super() }}
             <div class="col-md-12">
               <fieldset>
                 <label for="">Description</label>
-                <textarea name="description" rows="12" class="form-control" placeholder="Description"></textarea>
+                <textarea id="descriptionta" rows="12" class="form-control" placeholder="Description"></textarea>
+                <input name="description" type="hidden" id="realdesc"/>
               </fieldset>
             </div>
           </div>
@@ -189,6 +190,7 @@ block head %} {{ super() }}
   });
 
   document.getElementById("submitter").addEventListener("click", function () {
+    $('#realdesc').val($('#descriptionta').val());
     $("form").submit();
   })
 </script>

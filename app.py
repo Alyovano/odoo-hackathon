@@ -106,9 +106,9 @@ def update_event_form():
     data = request.form
     cursor = db.cursor()
     cursor.execute(
-        """UPDATE events SET date_from = \'{}\', date_to = \'{}\', title = \'{}\', title = \'{}\', event_description = \'{}\' WHERE event_id = {}""".format(
-            data.get("date_from"),
-            data.get("date_to"),
+        """UPDATE events SET date_from = \'{}\', date_to = \'{}\', title = \'{}\', event_description = \'{}\' WHERE event_id = {}""".format(
+            data.get("date-start"),
+            data.get("date-stop"),
             data.get("title"),
             data.get("description"),
             data.get("id"),
