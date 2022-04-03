@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Cursus{% endblock %}
 {% block head %}
   {{ super() }}
   <style type="text/css">
@@ -79,16 +79,26 @@
     li.tree-diagram__root::before {
         border-right: none;
     }
+    .course-done{
+      color: green;
+      text-decoration: none!important;
+    }
+    .course-done:hover{
+      color: green!important;
+    }
+    .course-to-redo{
+      color: orange;
+    }
   </style>
 {% endblock %}
 {% block content %}
-    <h1>Courses</h1>
+    <h1>Cursus</h1>
     <div class="tree-diagram mb-5">
       <ul>
 
           <li>
-            <i class="fa-solid fa-flask"></i>
-            Chemistry
+            <i class="fa-solid fa-flask course-to-redo"></i>
+            <span class="course-to-redo">Chemistry</span>
               <ul>
                   <li><i class="fa-solid fa-flask"></i>
                       Sub 1
@@ -101,16 +111,17 @@
               </ul>
           </li>
           <li>
-            <i class="fa-solid fa-atom"></i> Physics 1
+            <i class="fa-solid fa-atom course-done"></i> <a href="/course/phy1" class="course-done">Physics 1</a>
               <ul>
                   <li>
-                    <i class="fa-solid fa-atom"></i> Physics 2
+                    <i class="fa-solid fa-atom course-done"></i> <a href="/course/phy2" class="course-done">Physics 2</a>
                       <ul>
                           <li><i class="fa-solid fa-atom"></i> Physics 3
                             <ul>
-                              <li><i class="fa-solid fa-atom"></i> Physics 4
+                              <li><i class="fa-solid fa-atom"></i> Spe1</li>
+                              <li><i class="fa-solid fa-atom"></i> Spe2
                                 <ul>
-                                  <li><i class="fa-solid fa-atom"></i> Physics 5</li>
+                                  <li><i class="fa-solid fa-atom"></i> Spe2.1</li>
                                 </ul>
                               </li>
                             </ul>
@@ -120,8 +131,8 @@
               </ul>
           </li>
 
-          <li><i class='fas fa-square-root-alt'></i>
-            Maths
+          <li><i class='fas fa-square-root-alt course-done'></i>
+            <a href="/course/ma1" class="course-done">Maths</a>
               <ul>
                   <li><i class='fas fa-square-root-alt'></i>
                       Sub 1
