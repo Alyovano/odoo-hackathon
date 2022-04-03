@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block title %}CourseFlix{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+
+<div class="container">
+    <div class="row" id="phy_succes">
+      <div class="text-center mt-4 col-6">
+        <h1>Physique 2 : Reussite</h1>
+      </div>
+      <div class="text-center mt-4 col-6">
+        <h1 style="color:green;">86%</h1>
+      </div>
+    </div>
+
+
+<!-- TODO: For loop below -->
+    <div class="row">
+      <div class="mt-4 col-6">
+        <h3>Consulter mes cours: </h3>
+        <ul>
+          <li><a href="{{ i }}.pdf">Chapitre 1</a></li>
+          <li><a href="{{ i }}.pdf">Chapitre 2</a></li>
+          <li><a href="{{ i }}.pdf">Personnal: Somes notes of 22 january</a></li>
+          <li><a href="{{ i }}.pdf">Chapitre 3</a></li>
+          <li><a href="{{ i }}.pdf">Chapitre 4</a></li>
+          <li><a href="{{ i }}.pdf">Chapitre 5</a></li>
+          <li><a href="{{ i }}.pdf">Chapitre 6</a></li>
+        </ul>
+      </div>
+      <div class="text-center mt-4 col-6">
+        <button class="btn btn-success">
+          <h4>Plan a lesson</h4>
+        </button>
+        <p style="font-size: 14px">*Your success in this course gives you 
+          the right to create reinforcement sessions for your fellow students</p>
+      </div>
+      <div class="text-center mt-4 col-6">
+      </div>
+    </div>
+</div>
+
+{% endblock %}

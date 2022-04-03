@@ -164,9 +164,12 @@ def get_profile():
         "person_type": rows[0][3],
         "email": rows[0][4],
     }
-    print(profil_exemple)
     return render_template("profile.html", content=profil_exemple)
 
+
+@api.route("/course/phy2", methods=["GET"])
+def get_courses_phy2():
+    return render_template("phy2.html")
 
 if __name__ == "__main__":
     api.run()
