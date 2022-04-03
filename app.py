@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from database import Database
 import json
 import datetime
@@ -82,6 +82,11 @@ def get_event(id):
         persons=persons,
     )
 
+@api.route('/calendar/event/update/<int:id>', methods=['POST'])
+def update_event(id):
+  data = request.form
+  print(data)
+  return;
 
 @api.route("/cursusflix", methods=["GET"])
 def get_cursusflix():
