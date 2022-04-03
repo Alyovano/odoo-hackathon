@@ -171,5 +171,9 @@ def get_profile():
 def get_courses_phy2():
     return render_template("phy2.html")
 
+@api.route("/course/chem1", methods=["GET"])
+def get_courses_chem1():
+    return render_template("chem1.html")
+
 if __name__ == "__main__":
     api.run()
