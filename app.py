@@ -82,11 +82,18 @@ def get_event(id):
         persons=persons,
     )
 
-@api.route('/calendar/event/update/<int:id>', methods=['POST'])
-def update_event(id):
+@api.route("/calendar/event/create", methods=['POST'])
+def create_event():
   data = request.form
-  print(data)
-  return;
+  start = data.get('start')
+  end = data.get('end')
+  cursor = db.cursor()
+  cursor.execute("""INSERT INTO events
+                    ("title", "date_from", "date_to", "organizer", "event_description", "category_id")
+                    VALUES ('TITLE', '{}', '{}', 1, 'Description', 1);
+                """.format(start, end))
+  db.commit();
+  return True;
 
 @api.route("/cursusflix", methods=["GET"])
 def get_cursusflix():

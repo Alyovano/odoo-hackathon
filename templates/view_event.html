@@ -40,9 +40,12 @@ block head %} {{ super() }}
     color: white;
   }
 
-  .table-row-teacher td a{
+  .table-row-teacher td a {
     color: white;
     decoration: none;
+  }
+  .hidden {
+    display: none !important;
   }
 </style>
 {% endblock %} {% block content %}
@@ -62,6 +65,69 @@ block head %} {{ super() }}
       </div>
     </div>
 
+    <div class="row">
+      <div class="container">
+        <form class="form hidden" action="/calender/event/update" method="post">
+          <div class="row">
+            <div class="col-md-3">
+              <fieldset>
+                <label for="">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Event's title"
+                  name="title"
+                  id="title"
+                />
+              </fieldset>
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-md-12">
+                  <fieldset>
+                    <label for="">Date Start</label>
+                    <input
+                    type="datetime-local"
+                    name="date-start"
+                    class="form-control"
+                    placeholder="Event Date Start'"
+                    />
+                  </fieldset>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <fieldset>
+                    <label for="">Date stop</label>
+                    <input
+                    type="datetime-local"
+                    name="date-stop"
+                    class="form-control"
+                    placeholder="Event Date Start'"
+                    />
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <fieldset>
+                <label for="">Description</label>
+                <textarea name="description" rows="12" class="form-control" placeholder="Description"></textarea>
+              </fieldset>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <a href="#" id="submitter" class="btn btn-event btn-primary">Update</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="row row-event">
       <div class="col-md-3 event-icon">
         <i class="fa-solid fa-{{event.title[0]|lower}} fa-10x"></i>
@@ -75,6 +141,7 @@ block head %} {{ super() }}
     <div class="row row-event">
       <div class="col-md-6">
         <a href="#" class="btn-event btn-success">Rejoindre</a>
+        <a href="#" class="btn-event btn-warning" id="updater">Update</a>
         <a href="#" class="btn-event btn-danger">Quitter</a>
       </div>
     </div>
@@ -97,10 +164,11 @@ block head %} {{ super() }}
             <th>Adresse email</th>
           </thead>
           <tbody>
-            {% for person in persons %} 
-            {% if person.person_type == "teacher" %}
-              <tr class="table-row-teacher">
-            {%else %}
+            {% for person in persons %} {% if person.person_type == "teacher" %}
+            <tr class="table-row-teacher">
+              {%else %}
+            </tr>
+
             <tr>
               {%endif %}
               <td>{{person.person_type}}</td>
@@ -114,4 +182,9 @@ block head %} {{ super() }}
     </div>
   </div>
 </section>
+<script>
+  document.getElementById("updater").addEventListener("click", function () {
+    $("form").toggleClass("hidden");
+  });
+</script>
 {% endblock %}

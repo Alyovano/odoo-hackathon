@@ -26,8 +26,40 @@
       eventDrop: function(data) {console.log(data)},
       select: function(data) {
         // create
-        console.log(data.end, data.start);
-        $.ajax(`/calendar/event/update/`)
+        let start = new Date(data.start);
+        let end = new Date(data.end);
+        let c_start = {
+          year: start.getFullYear(),
+          month: ((start.getMonth() + 1) < 10 ? `0${start.getMonth() + 1}`: start.getMonth() + 1),
+          day: (start.getDate() < 10 ? `0${start.getDate()}`: start.getDate()),
+          hour: (start.getHours() < 10 ? `0${start.getHours()}`:start.getHours()),
+          minute: (start.getMinutes() < 10 ? `0${start.getMinutes()}`:start.getMinutes()),
+          sec: '00'
+        }
+
+        let c_end = {
+          year: end.getFullYear(),
+          month: ((end.getMonth() + 1) < 10 ? `0${end.getMonth() + 1}`: end.getMonth() + 1),
+          day: (end.getDate() < 10 ? `0${end.getDate()}`: end.getDate()),
+          hour: (end.getHours() < 10 ? `0${end.getHours()}`:end.getHours()),
+          minute: (end.getMinutes() < 10 ? `0${end.getMinutes()}`:end.getMinutes()),
+          sec: '00'
+        }
+
+        start = `${c_start.year}-${c_start.month}-${c_start.day} ${c_start.hour}:${c_start.minute}:${c_start.sec}`;
+        end = `${c_end.year}-${c_end.month}-${c_end.day} ${c_end.hour}:${c_end.minute}:${c_end.sec}`;
+        console.log(start);
+        console.log(end);
+        $.ajax(`/calendar/event/create`, {
+          method: 'POST',
+          data: {
+            start: start,
+            end: end,
+          }
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 250)
       },
       eventClick: function(data) {
         console.log(data);
